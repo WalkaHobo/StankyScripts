@@ -1,10 +1,33 @@
 local preyLoc
 local preyId = game.Players.LocalPlayer.Backpack["Tracking Fob"].PreyID.Value
 
+--CFrame for each planet
+local locations = {
+    [1] = {x = -40, y = 1915, z = 801},
+    [2] = {x = -1161, y = 1609, z = -514},
+    [3] = {x = -6232, y = 1864, z = -3747},
+    [4] = {x = -7013, y = 1947, z = -3117},
+    [5] = {x = -194, y = 1650, z = -7149},
+    [6] = {x = -647, y = 1680, z = -8573},
+    [7] = {x = 7806, y = 1648, z = 5428},
+    [8] = {x = 7769, y = 1674, z = 4810}
+}
+
+--teleport to each planet to render all assets
+if(doPort) then
+    for i,v in next, locations do
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.x,v.y,v.z)
+    wait(0.5)
+    end
+end
+
+--find bounty in list of players and get their location
 for i,v in pairs(game.Players:GetChildren()) do
     if v.UserId == preyId then
         preyLoc = v.Character.HumanoidRootPart.CFrame
         end
 end
-wait(4)
+wait(t)
+
+--teleport to bounty's location
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(preyLoc.x, preyLoc.y, preyLoc.z)
