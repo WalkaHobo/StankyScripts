@@ -1,0 +1,10 @@
+local preyLoc
+local preyId = game.Players.LocalPlayer.Backpack["Tracking Fob"].PreyID.Value
+
+for i,v in pairs(game.Players:GetChildren()) do
+    if v.UserId == preyId then
+        preyLoc = v.Character.HumanoidRootPart.CFrame
+        end
+end
+wait(4)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(preyLoc.x, preyLoc.y, preyLoc.z)
